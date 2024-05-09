@@ -7,6 +7,7 @@ service UserService {
   rpc FindOneById (UserById) returns (ResData) {}
   rpc FindAll (empty) returns (ResDataFindAll) {}
   rpc Create (CreateUser) returns (ResData) {}
+  rpc Login (LoginDto) returns (ResData) {}
   rpc Update (UpdateUser) returns (ResData) {}
   rpc Delete (UserById) returns (ResData) {}
 }
@@ -15,6 +16,11 @@ message UserById {
   int32 id = 1;
 }
 message empty {
+}
+
+message LoginDto {
+  string phone = 1;
+  string password = 2;
 }
 
 message RepeatedUser {

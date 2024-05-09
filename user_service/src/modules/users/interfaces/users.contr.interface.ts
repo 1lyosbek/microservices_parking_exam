@@ -4,6 +4,11 @@ export interface IUserById {
     id: number;
 }
 
+export interface ILoginDto {
+    phone: string;
+    password: string;
+}
+
 export interface IUserUpdateData {
     phone: string;
     password: string;

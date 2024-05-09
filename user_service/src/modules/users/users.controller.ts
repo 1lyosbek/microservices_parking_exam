@@ -3,7 +3,7 @@ import { GrpcMethod } from '@nestjs/microservices';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AllExceptionsFilter } from 'src/lib/rpc-exeptionFilter';
-import { IUserById, IUserUpdateDto } from './interfaces/users.contr.interface';
+import { ILoginDto, IUserById, IUserUpdateDto } from './interfaces/users.contr.interface';
 import { ResData } from 'src/lib/resData';
 import { USER_SERVICE } from 'src/common/consts/consts';
 import { UserEntity } from './entities/user.entity';
@@ -18,6 +18,12 @@ export class UsersController {
   async findOne(data: IUserById) {
     const userById = await this.usersService.findOne(data.id)
     return new ResData("user found", 200, userById)
+  }
+  @UseFilters(new AllExceptionsFilter())
+  @GrpcMethod(USER_SERVICE, 'Login')
+  async login(data: ILoginDto) {
+    const userByLogin = await this.usersService.login(data)
+    return new ResData("you are logged in", 200, userByLogin)
   }
 
   @UseFilters(new AllExceptionsFilter())

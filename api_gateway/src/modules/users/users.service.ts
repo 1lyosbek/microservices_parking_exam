@@ -7,6 +7,7 @@ import { ParksService } from '../parks/parks.service';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { RedisKeys } from 'src/common/enums/roleEnum';
 import { Cache } from 'cache-manager';
+import { AuthLoginDto } from '../auth/dto/create-auth.dto';
 
 @Injectable()
 export class UserService implements OnModuleInit {
@@ -45,6 +46,11 @@ async update(id: number, updateUserDto: UpdateUserDto) {
   const updatedUser = await this.userService.update({id, data: updateUserDto}).toPromise();
   await this.cacheManager.del(RedisKeys.USERS)
   return updatedUser;
+}
+
+  async login(data: AuthLoginDto){
+    const logged = await this.userService.login(data).toPromise();
+    return logged;
 }
 
 async remove(id: number) {

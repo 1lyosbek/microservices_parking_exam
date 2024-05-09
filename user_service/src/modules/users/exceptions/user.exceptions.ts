@@ -11,3 +11,8 @@ export class UserPhoneAlreadyExist extends RpcException{
         super("This phone number already exist_$_404")
     }
 }
+export class PasswordOrPhoneWrongWxception extends RpcException{
+    constructor(){
+        super("Phone or Password is wrong_$_404")
+    }
+}

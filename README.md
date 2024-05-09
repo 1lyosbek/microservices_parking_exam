@@ -72,21 +72,16 @@ npm run start:prod
 
 1. <b>Admin</b><br><br>
    Phone: 
-+998931651884
++998335701001
    <br>
    password: 
-@dm1n2o24
+test
    <br><br>
 2. <b>Owner</b><br><br>
    Phone: 
-+998943571881
++998335701002
    <br>
    Password: 
-@dm1n2o24
+test
    <br><br>
-3. <b>Client</b><br><br>
-   phone: 
-+998937487750
-   <br>
-   password: 
-@dm1n2o24
+

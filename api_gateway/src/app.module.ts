@@ -14,6 +14,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { redisStore } from 'cache-manager-redis-yet';
         });
         return { store }
       },
-    }), UsersModule, ParksModule, FilesModule, TransactionsModule, LayersModule, ServicesModule, PlacesModule, TariffsModule, UserTariffModule, UserDetailModule, ShotModule, ShotModule],
+    }), UsersModule, ParksModule, FilesModule, TransactionsModule, LayersModule, ServicesModule, PlacesModule, TariffsModule, UserTariffModule, UserDetailModule, ShotModule, ShotModule, AuthModule],
   controllers: [],
   providers: [],
 })

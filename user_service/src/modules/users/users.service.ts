@@ -2,8 +2,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { IUserRepository } from './interfaces/users.repo.interface';
 import { UserEntity } from './entities/user.entity';
-import { UserNotFoundException } from './exceptions/user.exceptions';
-import { IUserUpdateData } from './interfaces/users.contr.interface';
+import { PasswordOrPhoneWrongWxception, UserNotFoundException } from './exceptions/user.exceptions';
+import { ILoginDto, IUserUpdateData } from './interfaces/users.contr.interface';
+import { compare, hashed } from 'src/lib/bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -11,11 +12,23 @@ export class UsersService {
   async create(createUserDto: CreateUserDto):Promise<UserEntity> {
     const newUser = new UserEntity(); 
     newUser.phone = createUserDto.phone;
-    newUser.password =  createUserDto.password;
+    newUser.password = hashed(createUserDto.password);
     newUser.role = createUserDto.role;
     newUser.parkId = createUserDto.parkId;
     const created  = await this.useRepository.createUser(newUser);
     return  created;
+  }
+
+  async login(loginDto: ILoginDto):Promise<UserEntity>{
+    const foundUserByPhone = await this.findByPhone(loginDto.phone);
+    if (!foundUserByPhone) {
+      throw new PasswordOrPhoneWrongWxception()
+    }
+    const verified = compare(loginDto.password, foundUserByPhone.password)
+    if (!verified) {
+      throw new PasswordOrPhoneWrongWxception();
+    }
+    return foundUserByPhone;
   }
 
   async findAll():Promise<Array<UserEntity>> {
