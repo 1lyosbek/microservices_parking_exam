@@ -16,11 +16,11 @@ npm run start:prod
 
 # User Service
 #### 1. Papkaga kirish 
-cd user
+cd user_service
 #### 2. Kerakli Kutubxonalarni o'rnatish 
 npm i
 #### 3. Migratsiyani yaratish 
-npm run migration:generate -- src/database/migration/user
+npm run migration:generate -- src/database/migrations/user
 #### 4. Migratsiyani bajarish
 npm run migration:run
 #### 5. Seed yaratish
@@ -31,11 +31,11 @@ npm run start:prod
 
 # Park Service
 #### 1. Papkaga kirish 
-cd park
+cd park_service
 #### 2. Kerakli Kutubxonalarni o'rnatish 
 npm i
 #### 3. Migratsiyani yaratish 
-npm run migration:generate -- src/database/migration/park
+npm run migration:generate -- src/database/migrations/park
 #### 4. Migratsiyani bajarish
 npm run migration:run
 #### 5. Seed yaratish
@@ -46,11 +46,11 @@ npm run start:prod
 
 # Transaction Service
 #### 1. Papkaga kirish 
-cd transaction
+cd transaction_service
 #### 2. Kerakli Kutubxonalarni o'rnatish 
 npm i
 #### 3. Migratsiyani yaratish 
-npm run migration:generate -- src/database/migration/transaction
+npm run migration:generate -- src/database/migrations/transaction
 #### 4. Migratsiyani bajarish
 npm run migration:run
 #### 5. Seed yaratish
@@ -61,7 +61,7 @@ npm run start:prod
 
 # Api-Gateway Client
 #### 1. Papkaga kirish 
-cd api-getway
+cd api_getway
 #### 2. Kerakli Kutubxonalarni o'rnatish 
 npm i
 #### 3. Start Project
