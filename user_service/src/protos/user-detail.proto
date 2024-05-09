@@ -1,0 +1,65 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package userdetail;
+
+service UserDetailService {
+  rpc Create (CreateUserDetail) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindById (UserDetailById) returns (ResData) {}
+  rpc Update (UpdateUserDetailDto) returns (ResData) {}
+  rpc Delete (UserDetailById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message UserDetailById {
+  int32 id = 1;
+}
+
+message RepeatedUserDetail {
+  repeated UserDetail userDetails = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedUserDetail data = 3;
+  string error = 4;
+}
+
+message CreateUserDetail {
+  string firstName = 1;
+  string lastName = 2;
+  int32 avatar = 3;
+  int32 userId = 4;
+}
+
+message UpdateUserDetailtData {
+  string firstName = 1;
+  string lastName = 2;
+  int32 avatar = 3;
+  int32 userId = 4;
+}
+
+message UpdateUserDetailDto {
+  int32 id = 1;
+  UpdateUserDetailtData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  UserDetail data = 3;
+  string error = 4;
+}
+
+message UserDetail {
+  int32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  int32 avatar = 4;
+  int32 userId = 5;
+  string createdAt = 8;
+  string lastEditedAt = 9;
+}

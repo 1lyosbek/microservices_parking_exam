@@ -1,0 +1,65 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package usertariff;
+
+service UserTariffService {
+  rpc Create (CreateUserTariff) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindById (UserTariffById) returns (ResData) {}
+  rpc Update (UpdateUserTariffDto) returns (ResData) {}
+  rpc Delete (UserTariffById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message UserTariffById {
+  int32 id = 1;
+}
+
+message RepeatedUserTariff {
+  repeated UserTariff userTariffs = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedUserTariff data = 3;
+  string error = 4;
+}
+
+message CreateUserTariff {
+  int32 userId = 1;
+  int32 tariffId = 2;
+  string startedAt  = 3;
+  string endedAt = 4;
+}
+
+message UpdateUserTarifftData {
+  int32 userId = 1;
+  int32 tariffId = 2;
+  string startedAt  = 3;
+  string endedAt = 4;
+}
+
+message UpdateUserTariffDto {
+  int32 id = 1;
+  UpdateUserTarifftData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  UserTariff data = 3;
+  string error = 4;
+}
+
+message UserTariff {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 tariffId = 3;
+  string startedAt = 4;
+  string endedAt = 5;
+  string createdAt = 8;
+  string lastEditedAt = 9;
+}

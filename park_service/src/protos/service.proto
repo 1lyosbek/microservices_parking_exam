@@ -1,0 +1,75 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package service;
+
+///// Park Proto  /////
+
+service ServicesService {
+  rpc Create (CreateService) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindById (ServiceById) returns (ResData) {}
+  rpc Update (UpdateServiceDto) returns (ResData) {}
+  rpc Delete (ServiceById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message ServiceById {
+  int32 id = 1;
+}
+
+message RepeatedService {
+  repeated Service services = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedService data = 3;
+  string error = 4;
+}
+
+message CreateService {
+  int32 parkId = 1;
+  int32 userId = 2;
+  string startedAt = 3;
+  string endedAt = 4;
+  int32 price = 5;
+  int32 tariffId = 6;
+  int32 placeId = 7;
+}
+
+message UpdateServiceData {
+  int32 parkId = 1;
+  int32 userId = 2;
+  string startedAt = 3;
+  string endedAt = 4;
+  int32 price = 5;
+  int32 tariffId = 6;
+  int32 placeId = 7;
+}
+
+message UpdateServiceDto {
+  int32 id = 1;
+  UpdateServiceData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  Service data = 3;
+  string error = 4;
+}
+
+message Service {
+  int32 id = 1;
+  string parkId = 2;
+  int32 userId = 3;
+  string startedAt = 4;
+  string endedAt = 5;
+  int32 price = 6;
+  int32 tariffId = 7;
+  string createdAt = 8;
+  string lastEditedAt = 9;
+}

@@ -1,0 +1,65 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package tariff;
+
+service TariffService {
+  rpc Create (CreateTariff) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindOneById (TariffById) returns (ResData) {}
+  rpc Update (UpdateTariff) returns (ResData) {}
+  rpc Delete (TariffById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message TariffById {
+    int32 id = 1; 
+}
+
+message RepeatedTariff {
+  repeated Tariff tariffs = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedTariff data = 3;
+  string error = 4;
+}
+
+message CreateTariff {
+  string name = 1;
+  int32 parkId = 2;
+  int32 price = 3;
+  string time  = 4;
+}
+
+message UpdateTariffData {
+    string name = 1;
+    int32 parkId = 2;
+    int32 price = 3;
+    string time = 4;
+}
+
+message UpdateTariff {
+    int32 id = 1;
+    UpdateTariffData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  Tariff data = 3;
+  string error = 4;
+}
+
+message Tariff {
+  int32 id = 1;
+  string name = 2;
+  int32 parkId = 3;
+  int32 price = 4;
+  string time = 5;
+  string createdAt = 6;
+  string lastEditedAt = 7;
+}

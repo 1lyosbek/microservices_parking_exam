@@ -1,0 +1,64 @@
+// hero/hero.proto
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package layer;
+
+
+service LayerService {
+  rpc Create (CreateLayer) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindOneById (LayerById) returns (ResData) {}
+  rpc Update (UpdateLayer) returns (ResData) {}
+  rpc Delete (LayerById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message LayerById {
+  int32 id = 1;
+}
+
+message RepeatedLayer {
+  repeated Layer layers = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedLayer data = 3;
+  string error = 4;
+}
+
+message CreateLayer {
+  string name = 1;
+  int32 floor = 2;
+  int32 parkId  = 3;
+}
+
+message UpdateLayerData {
+  string name = 1;
+  int32 floor = 2;
+  int32 parkId  = 3;
+}
+
+message UpdateLayer {
+  int32 id = 1;
+  UpdateLayerData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  Layer data = 3;
+  string error = 4;
+}
+
+message Layer {
+  int32 id = 1;
+  string name = 2;
+  int32 floor = 3;
+  int32 parkId  = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}

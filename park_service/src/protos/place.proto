@@ -1,0 +1,66 @@
+// hero/hero.proto
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package place;
+
+
+service PlaceService {
+  rpc Create (CreatePlace) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindOneById (PlaceById) returns (ResData) {}
+  rpc Update (UpdatePlace) returns (ResData) {}
+  rpc Delete (PlaceById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message PlaceById {
+  int32 id = 1;
+}
+
+message RepeatedPlace {
+  repeated Place places = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedPlace data = 3;
+  string error = 4;
+}
+
+message CreatePlace {
+  string name = 1;
+  int32 layerId = 2;
+  string price  = 3;
+}
+
+message UpdatePlaceData {
+  string name = 1;
+  int32 layerId = 2;
+  int32 price  = 3;
+}
+
+message UpdatePlace {
+  int32 id = 1;
+  UpdateParkData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  Place data = 3;
+  string error = 4;
+}
+
+message Place {
+  int32 id = 1;
+  string name = 2;
+  int32 layerId = 3;
+  int32 price  = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}
+
+

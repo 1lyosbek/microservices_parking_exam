@@ -1,0 +1,63 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package park;
+
+
+service ParkService {
+  rpc Create (CreatePark) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc FindOneById (ParkById) returns (ResData) {}
+  rpc Update (UpdatePark) returns (ResData) {}
+  rpc Delete (ParkById) returns (ResData) {}
+}
+
+message empty {
+}
+
+message ParkById {
+  int32 id = 1;
+}
+
+message RepeatedPark {
+  repeated Park parks = 1;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedPark data = 3;
+  string error = 4;
+}
+
+message CreatePark {
+  string name = 1;
+  int32 owner = 2;
+  int32 image  = 3;
+}
+
+message UpdateParkData {
+  string name = 1;
+  int32 owner = 2;
+  int32 image  = 3;
+}
+
+message UpdatePark {
+  int32 id = 1;
+  UpdateParkData data = 2;
+}
+
+message ResData{
+  string message = 1;
+  int32 statusCode = 2;
+  Park data = 3;
+  string error = 4;
+}
+
+message Park {
+  int32 id = 1;
+  string name = 2;
+  int32 owner = 3;
+  int32 image  = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}

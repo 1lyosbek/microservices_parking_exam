@@ -1,0 +1,64 @@
+// hero/hero.proto
+syntax = "proto3";
+import "google/protobuf/any.proto";
+package shot;
+
+service ShotService {
+  rpc FindOneByUserId (ShotByUserId) returns (ResData) {}
+  rpc FindOneById (ShotById) returns (ResData) {}
+  rpc FindAll (empty) returns (ResDataFindAll) {}
+  rpc Create (CreateShot) returns (ResData) {}
+  rpc Update (UpdateShot) returns (ResData) {}
+  rpc Delete (ShotById) returns (ResData) {}
+}
+
+message ShotById {
+  int32 id = 1;
+}
+
+message ShotByUserId {
+  int32 userId = 1;
+}
+
+message empty {
+}
+
+message RepeatedShot {
+  repeated Shot shots = 1;
+}
+
+message ResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Shot data = 3;
+  string error = 4;
+}
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  RepeatedShot data = 3;
+  string error = 4;
+}
+
+message CreateShot {
+  int32 userId = 1;
+  int32 amount = 2;
+}
+
+message UpdateShotData {
+  int32 userId = 1;
+  int32 amount = 2;
+}
+
+message UpdateShot {
+  int32 id = 1;
+  UpdateShotData data = 2;
+}
+
+message Shot {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 amount = 3;
+  string createdAt = 4;
+  string lastEditededAt = 5;
+}
