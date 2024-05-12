@@ -23,4 +23,4 @@ import { config } from 'src/common/config/config';
   controllers: [FilesController],
   providers: [FilesService],
 })
-export class FilesModule {}
+export class FilesModule { };

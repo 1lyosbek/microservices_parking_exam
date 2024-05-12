@@ -4,20 +4,21 @@ import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 import { RoleEnum } from 'src/common/enums/roleEnum';
 
 @ApiTags('place')
 @Controller('places')
 export class PlacesController {
-  constructor(private readonly placesService: PlacesService) {}
+  constructor(private readonly placesService: PlacesService) { }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @RolesDecorator(RoleEnum.ADMIN, RoleEnum.OWNER)
   @Post()
   create(@Body() createPlaceDto: CreatePlaceDto) {
+    console.log(createPlaceDto);
     return this.placesService.create(createPlaceDto);
   }
 

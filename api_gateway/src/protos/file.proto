@@ -5,9 +5,6 @@ package file;
 
 service FileService {
   rpc Create (CreateFileDto) returns (ResData) {}
-  rpc FindAll (empty) returns (ResDataFindAll) {}
-  rpc FindOneById (int32) returns (ResData) {}
-  rpc Delete (int32) returns (ResData) {}
 }
 
 message empty {
@@ -41,7 +38,7 @@ message File {
   int32 id = 1;
   string url = 2;
   string mimetype  = 3;
-  int32 size  = 4;
-  string createdAt = 6;
-  string lastEditedAt = 7;
+  string size  = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
 }

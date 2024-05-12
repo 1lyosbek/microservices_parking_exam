@@ -5,13 +5,13 @@ import { UpdateTariffDto } from './dto/update-tariff.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
 import { RoleEnum } from 'src/common/enums/roleEnum';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 
 @ApiTags('tariff')
 @Controller('tariffs')
 export class TariffsController {
-  constructor(private readonly tariffsService: TariffsService) {}
+  constructor(private readonly tariffsService: TariffsService) { }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -1,9 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateFileDto } from './dto/create-file.dto';
-import { UpdateFileDto } from './dto/update-file.dto';
 import { FILE_PACKAGE } from 'src/common/consts/consts';
 import { ClientGrpc } from '@nestjs/microservices';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class FilesService {
@@ -20,6 +17,7 @@ export class FilesService {
       mimetype: file.mimetype,
       size: file.size,
     }
+    console.log(createFileDto);
     const createdFile = await this.fileService.create(createFileDto).toPromise();
     return createdFile; 
   }

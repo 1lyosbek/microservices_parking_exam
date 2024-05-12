@@ -11,9 +11,9 @@ message empty {
 }
 
 message CreateFileDto {
-    string url = 2;
-    string mimetype = 4;
-    int32 size = 8;
+    string url = 1;
+    string mimetype = 2;
+    int32 size = 3;
 }
 
 message RepeatedFile {
@@ -39,6 +39,6 @@ message File {
   string url = 2;
   string mimetype  = 3;
   string size  = 4;
-  string createdAt = 6;
-  string lastEditedAt = 7;
+  string createdAt = 5;
+  string lastEditedAt = 6;
 }

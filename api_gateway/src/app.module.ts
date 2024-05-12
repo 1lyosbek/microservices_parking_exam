@@ -26,7 +26,7 @@ import { AuthModule } from './modules/auth/auth.module';
       isGlobal: true,
       useFactory: async () => {
         const store = await redisStore({
-          socket: { host: 'localhost', port: 6379 },
+          socket: { host: '127.0.0.1', port: 6379 },
           ttl: 10 * 1000,
         });
         return { store }

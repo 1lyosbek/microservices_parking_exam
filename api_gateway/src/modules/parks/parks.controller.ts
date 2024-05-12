@@ -6,13 +6,13 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { RedisKeys, RoleEnum } from 'src/common/enums/roleEnum';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 
 @ApiTags('park')
 @Controller('parks')
 export class ParksController {
-  constructor(private readonly parksService: ParksService) {}
+  constructor(private readonly parksService: ParksService) { }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)

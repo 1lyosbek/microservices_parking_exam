@@ -21,9 +21,10 @@ export class UsersController {
   }
   @UseFilters(new AllExceptionsFilter())
   @GrpcMethod(USER_SERVICE, 'Login')
-  async login(data: ILoginDto) {
-    const userByLogin = await this.usersService.login(data)
-    return new ResData("you are logged in", 200, userByLogin)
+  async loginUser(data: ILoginDto) {
+    console.log(data);
+    const userByLogin = await this.usersService.loginUserByPhone(data);
+    return new ResData<UserEntity>("you are logged in", 200, userByLogin);
   }
 
   @UseFilters(new AllExceptionsFilter())

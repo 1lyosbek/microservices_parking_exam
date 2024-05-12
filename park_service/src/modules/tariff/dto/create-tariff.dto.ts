@@ -2,5 +2,5 @@ export class CreateTariffDto {
     name: string;
     parkId: number;
     price: number;
-    time: string;
+    time: number;
 }

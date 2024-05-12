@@ -19,15 +19,17 @@ export class UsersService {
     return  created;
   }
 
-  async login(loginDto: ILoginDto):Promise<UserEntity>{
-    const foundUserByPhone = await this.findByPhone(loginDto.phone);
-    if (!foundUserByPhone) {
-      throw new PasswordOrPhoneWrongWxception()
-    }
-    const verified = compare(loginDto.password, foundUserByPhone.password)
-    if (!verified) {
+  async loginUserByPhone(loginDto: ILoginDto):Promise<UserEntity>{
+    console.log(loginDto);
+    const foundUserByPhone = await this.useRepository.getUserByPhone(loginDto.phone);
+    console.log(foundUserByPhone);
+    if (!foundUserByPhone || foundUserByPhone.password !== loginDto.password) {
       throw new PasswordOrPhoneWrongWxception();
     }
+    // const verified = compare(loginDto.password, foundUserByPhone.password)
+    // if (!verified) {
+    //   throw new PasswordOrPhoneWrongWxception();
+    // }
     return foundUserByPhone;
   }
 

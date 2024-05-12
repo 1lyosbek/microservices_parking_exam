@@ -5,13 +5,13 @@ import { UpdateServiceDto } from './dto/update-service.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
 import { RoleEnum } from 'src/common/enums/roleEnum';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 
 @ApiTags('service')
 @Controller('services')
 export class ServicesController {
-  constructor(private readonly servicesService: ServicesService) {}
+  constructor(private readonly servicesService: ServicesService) { }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -5,7 +5,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PARK_PACKAGE } from 'src/common/consts/consts';
 import { join } from 'path';
 import { config } from 'src/common/config/config';
-console.log(join(__dirname, '../../protos/park.proto'));
+// console.log(join(__dirname, '../../protos/park.proto'));
 
 @Module({
   imports: [
@@ -14,9 +14,10 @@ console.log(join(__dirname, '../../protos/park.proto'));
         name: PARK_PACKAGE,
         transport: Transport.GRPC,
         options: {
-          package: 'park',
-          protoPath: join(__dirname, '../../protos/park.proto'),
-          url: config.parkServerUrl
+          package: ['park'],
+          protoPath: [join(__dirname, '../../protos/park.proto')],
+          url: config.parkServerUrl,
+          loader: { keepCase: false },
         },
       },
     ]),

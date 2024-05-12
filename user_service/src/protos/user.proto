@@ -4,10 +4,10 @@ import "google/protobuf/any.proto";
 package user;
 
 service UserService {
+  rpc Login (LoginDto) returns (ResData) {}
   rpc FindOneById (UserById) returns (ResData) {}
   rpc FindAll (empty) returns (ResDataFindAll) {}
   rpc Create (CreateUser) returns (ResData) {}
-  rpc Login (LoginDto) returns (ResData) {}
   rpc Update (UpdateUser) returns (ResData) {}
   rpc Delete (UserById) returns (ResData) {}
 }

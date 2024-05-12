@@ -11,7 +11,7 @@ export class BaseEntity {
     @CreateDateColumn({
         name: 'created_at',
         type: 'timestamp',
-        default: 'CURRENT_TIMESTAMP',
+        default: () => 'CURRENT_TIMESTAMP',
         nullable: false,
     })
     createdAt: Date;
@@ -19,7 +19,7 @@ export class BaseEntity {
     @UpdateDateColumn({
         name: 'last_edited_at',
         type: 'timestamp',
-        default: 'CURRENT_TIMESTAMP', 
+        default: () => 'CURRENT_TIMESTAMP',
         nullable: false,
     })
     lastEditedAt: Date;

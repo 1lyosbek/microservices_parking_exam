@@ -3,14 +3,14 @@ import { UserTariffService } from './user-tariff.service';
 import { CreateUserTariffDto } from './dto/create-user-tariff.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 import { RoleEnum } from 'src/common/enums/roleEnum';
 
 @ApiTags('user-tariff')
 @Controller('user-tariffs')
 export class UserTariffController {
-  constructor(private readonly userTariffService: UserTariffService) {}
+  constructor(private readonly userTariffService: UserTariffService) { }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)

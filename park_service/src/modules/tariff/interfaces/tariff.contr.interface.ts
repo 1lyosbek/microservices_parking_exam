@@ -6,7 +6,7 @@ export interface IUpadateTariffData {
     name: string;
     parkId: number;
     price: number;
-    time: string;
+    time: number;
 }
 
 export interface IUpdateTariffDto {

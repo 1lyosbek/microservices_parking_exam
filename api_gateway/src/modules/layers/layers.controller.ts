@@ -3,7 +3,7 @@ import { LayersService } from './layers.service';
 import { CreateLayerDto } from './dto/create-layer.dto';
 import { UpdateLayerDto } from './dto/update-layer.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
 import { RoleEnum } from 'src/common/enums/roleEnum';
@@ -11,7 +11,7 @@ import { RoleEnum } from 'src/common/enums/roleEnum';
 @ApiTags('layer')
 @Controller('layers')
 export class LayersController {
-  constructor(private readonly layersService: LayersService) {}
+  constructor(private readonly layersService: LayersService) { }
 
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)

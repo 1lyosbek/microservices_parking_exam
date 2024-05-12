@@ -25,12 +25,12 @@ export class PlacesService implements OnModuleInit{
   }
 
   async findAll() {
-    const foundPlaces = await this.placeService.findAll().toPromise();
+    const foundPlaces = await this.placeService.findAll({}).toPromise();
     return foundPlaces;
   }
 
   async findOne(id: number) {
-    const foundPlace = await this.placeService.findOne(id).toPromise();
+    const foundPlace = await this.placeService.findOneById({id}).toPromise();
     return foundPlace;
   }
 

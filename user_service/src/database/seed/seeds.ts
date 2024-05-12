@@ -19,15 +19,15 @@ import { createConnection, DataSource } from "typeorm"
         const users = await userRepository.find();
         await userRepository.remove(users);
         const newUser = new UserEntity();
-        newUser.phone = "+998335701001"
+        newUser.phone = "+998335701001";
         newUser.password = "test";
         newUser.role = 'admin';
-        
         await userRepository.save<UserEntity>(newUser);
+
         const newUser2 = new UserEntity();
-        newUser.phone = "+998335701002"
-        newUser.password = "test";
-        newUser.role = 'owner';
+        newUser2.phone = "+998335701002";
+        newUser2.password = "test";
+        newUser2.role = 'owner';
         await userRepository.save<UserEntity>(newUser2);
 
         ////////Creating UserDetail///////

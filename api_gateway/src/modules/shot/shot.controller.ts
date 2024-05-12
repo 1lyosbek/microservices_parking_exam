@@ -3,7 +3,7 @@ import { ShotService } from './shot.service';
 import { CreateShotDto } from './dto/create-shot.dto';
 import { UpdateShotDto } from './dto/update-shot.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../shared/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../shared/guards/auth/jwt-auth.guard';
 import { RolesGuard } from '../shared/role.guard';
 import { RoleEnum } from 'src/common/enums/roleEnum';
 import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
@@ -14,7 +14,7 @@ import { RolesDecorator } from 'src/common/decorators/rolesDecorator';
 @ApiTags('shot')
 @Controller('shot')
 export class ShotController {
-  constructor(private readonly shotService: ShotService) {}
+  constructor(private readonly shotService: ShotService) { }
 
   @Post()
   create(@Body() createShotDto: CreateShotDto) {

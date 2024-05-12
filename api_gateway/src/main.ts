@@ -5,7 +5,6 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AllExceptionsFilter } from './lib/AllExceptionFilter';
 import { config } from './common/config/config';
-// import { checkDto, configSchema } from './lib/configValidation';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -30,18 +29,16 @@ async function bootstrap() {
 
   // Swagger set up
   const options = new DocumentBuilder()
-    .setTitle('Edu_center')
+    .setTitle('Microservice Parking')
     .setDescription('this is v1')
     .setVersion('1.0.0')
-    .addTag('This is learning center api documentation')
+    .addTag('This is microservice parking api documentation')
     .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  // checkDto(configSchema, config)
-  
   await app.listen(config.serverPort, () => {
     console.log(`http://localhost:${config.serverPort}`);
     console.log(`http://localhost:${config.serverPort}/docs`);

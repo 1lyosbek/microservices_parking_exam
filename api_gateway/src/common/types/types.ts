@@ -1,3 +1,5 @@
+import { RoleEnum } from "../enums/roleEnum";
+
 export interface IConfig {
     serverPort: number,
     userServerUrl: string,
@@ -11,4 +13,12 @@ export interface IConfig {
     dbPassword: string;
     jwtKey: string;
     jwtExpiresIn: string;
+}
+
+export interface ICurrentUser {
+    id: number;
+    phone: string; 
+    password: string;
+    role: RoleEnum;
+    parkId?: number;
 }

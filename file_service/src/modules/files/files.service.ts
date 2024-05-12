@@ -9,6 +9,7 @@ import { FileNotFoundException } from './exceptions/file.exceptions';
 export class FilesService {
   constructor(@Inject("IFileRepository") private readonly fileRepository: IFileRepository) {}
   async create(createFileDto: CreateFileDto):Promise<FileEntity> {
+    console.log(createFileDto);
     const newFile = new FileEntity();
     newFile.url = createFileDto.url;
     newFile.mimetype = createFileDto.mimetype;

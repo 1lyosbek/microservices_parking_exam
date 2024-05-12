@@ -32,6 +32,7 @@ export class PlaceService {
 
   async update(id: number, updatePlaceDto: IUpdateDto): Promise<PlaceEntity> {
     const foundPlace = await this.findOne(id);
+    console.log(updatePlaceDto);
     foundPlace.name = updatePlaceDto.name;
     foundPlace.layerId = updatePlaceDto.layerId;
     foundPlace.price = updatePlaceDto.price;
