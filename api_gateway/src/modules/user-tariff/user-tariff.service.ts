@@ -53,23 +53,19 @@ export class UserTariffService implements OnModuleInit {
       if (foundCreditShot.amount < foundTariff.price) {
         throw new ShotMonetNotEnough()
       }
-      const createdService = await this.serviceServcie.create(createServiceData);
-      console.log("created Service :", createdService);
-      
+      const {data: createdService } = await this.serviceServcie.create(createServiceData);
       const createdUserTariff = await this.userTariffService.create(createUserTariffDto);
       const updateCreditShotData = {
         userId: foundUser.id,
         amount: foundCreditShot.amount - foundTariff.price
       }
       const shot1 = await this.shotService.update(foundCreditShot.id, updateCreditShotData);
-      console.log("shot 1 :", shot1);
       
       const updateDebitShotData = {
         userId: foundPark.owner,
         amount: foundDebitShot.amount + foundTariff.price
       }
       const shot2 = await this.shotService.update(foundPark.owner, updateDebitShotData);
-      console.log("shot 2 :", shot2);
       const createTransactionDto = {
         shotCreditId: foundCreditShot.id,
         shotDebitId: foundDebitShot.id,
@@ -77,8 +73,8 @@ export class UserTariffService implements OnModuleInit {
         amount: foundTariff.price
       }
       const transac = await this.transactionService.create(createTransactionDto);
-      console.log("transaction :", transac);
       await queryRunner.commitTransaction();
+      return createdUserTariff;
     } catch (err) {
       console.log("error :", err);
       await queryRunner.rollbackTransaction();
@@ -93,7 +89,7 @@ export class UserTariffService implements OnModuleInit {
   }
 
   async findOne(id: number) {
-    const foundUserTariff = await this.userTariffService.findOne({ id }).toPromise(); 
+    const foundUserTariff = await this.userTariffService.findOneById({ id }).toPromise(); 
     return foundUserTariff;
   }
 

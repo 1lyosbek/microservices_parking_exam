@@ -7,7 +7,7 @@ package service;
 service ServicesService {
   rpc Create (CreateService) returns (ResData) {}
   rpc FindAll (empty) returns (ResDataFindAll) {}
-  rpc FindById (ServiceById) returns (ResData) {}
+  rpc FindOneById (ServiceById) returns (ResData) {}
   rpc Update (UpdateServiceDto) returns (ResData) {}
   rpc Delete (ServiceById) returns (ResData) {}
 }

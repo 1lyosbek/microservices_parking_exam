@@ -5,7 +5,7 @@ package usertariff;
 service UserTariffService {
   rpc Create (CreateUserTariff) returns (ResData) {}
   rpc FindAll (empty) returns (ResDataFindAll) {}
-  rpc FindById (UserTariffById) returns (ResData) {}
+  rpc FindOneById (UserTariffById) returns (ResData) {}
   rpc Update (UpdateUserTariffDto) returns (ResData) {}
   rpc Delete (UserTariffById) returns (ResData) {}
 }

@@ -20,16 +20,14 @@ export class UsersService {
   }
 
   async loginUserByPhone(loginDto: ILoginDto):Promise<UserEntity>{
-    console.log(loginDto);
     const foundUserByPhone = await this.useRepository.getUserByPhone(loginDto.phone);
-    console.log(foundUserByPhone);
-    if (!foundUserByPhone || foundUserByPhone.password !== loginDto.password) {
+    if (!foundUserByPhone) {
       throw new PasswordOrPhoneWrongWxception();
     }
-    // const verified = compare(loginDto.password, foundUserByPhone.password)
-    // if (!verified) {
-    //   throw new PasswordOrPhoneWrongWxception();
-    // }
+    const verified = compare(loginDto.password, foundUserByPhone.password)
+    if (!verified) {
+      throw new PasswordOrPhoneWrongWxception();
+    }
     return foundUserByPhone;
   }
 

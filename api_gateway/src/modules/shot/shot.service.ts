@@ -30,13 +30,12 @@ export class ShotService implements OnModuleInit {
   }
 
   async  findShotByUserId(userId: number){
-    console.log(userId);
     const foundShot = await this.shotService.findOneByUserId({userId}).toPromise();
     return foundShot;
   }
 
   async findOne(id: number) {
-    const foundShot = await this.shotService.findOne({id}).toPromise();
+    const foundShot = await this.shotService.findOneById({id}).toPromise();
     return foundShot;
   }
 

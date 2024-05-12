@@ -1,4 +1,5 @@
 import { connectionSource } from "src/common/config/database.config";
+import { hashed } from "src/lib/bcrypt";
 import { UserDetailEntity } from "src/modules/user-detail/entities/user-detail.entity";
 import { UserEntity } from "src/modules/users/entities/user.entity";
 import { createConnection, DataSource } from "typeorm"
@@ -20,13 +21,13 @@ import { createConnection, DataSource } from "typeorm"
         await userRepository.remove(users);
         const newUser = new UserEntity();
         newUser.phone = "+998335701001";
-        newUser.password = "test";
+        newUser.password = hashed("test");
         newUser.role = 'admin';
         await userRepository.save<UserEntity>(newUser);
 
         const newUser2 = new UserEntity();
         newUser2.phone = "+998335701002";
-        newUser2.password = "test";
+        newUser2.password = hashed("boss")
         newUser2.role = 'owner';
         await userRepository.save<UserEntity>(newUser2);
 

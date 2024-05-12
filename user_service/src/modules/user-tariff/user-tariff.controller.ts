@@ -15,7 +15,7 @@ export class UserTariffController {
   @GrpcMethod(USER_TARIFF_SERVICE, 'FindOneById')
   async findOne(data: IUserTariffById) {
     const userDetailById = await this.userTariffService.findOne(data.id);
-    return new ResData("park found", 200, userDetailById)
+    return new ResData("user-tariff found", 200, userDetailById)
   }
 
   @GrpcMethod(USER_TARIFF_SERVICE, 'FindAll')

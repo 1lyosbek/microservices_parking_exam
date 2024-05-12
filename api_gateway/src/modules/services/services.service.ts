@@ -33,7 +33,7 @@ export class ServicesService implements OnModuleInit {
   }
 
   async findOne(id: number) {
-    const foundService = await this.serviceService.findOne(id).toPromise();
+    const foundService = await this.serviceService.findOneById({id}).toPromise();
     return foundService;
   }
 
