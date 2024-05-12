@@ -24,12 +24,13 @@ export class UserDetailService {
   }
 
   async findAll() {
-    const foundUserDetails = await this.userDetailService.findAll().toPromise();
+    const foundUserDetails = await this.userDetailService.findAll({}).toPromise();
+    console.log(foundUserDetails);
     return foundUserDetails;
   }
 
   async findOne(id: number) {
-    const foundUserDetail = await this.userDetailService.findOne(id).toPromise();
+    const foundUserDetail = await this.userDetailService.findOneById({id}).toPromise();
     return foundUserDetail;
   }
 

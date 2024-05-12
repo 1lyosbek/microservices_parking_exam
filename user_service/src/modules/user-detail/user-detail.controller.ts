@@ -13,15 +13,16 @@ export class UserDetailController {
 
   @GrpcMethod(USER_DETAIL_SERVICE, 'FindOneById')
   async findOne(data: IUserDetailById) {
+    console.log(data);
     const userDetailById = await this.userDetailService.findOne(data.id);
-    return new ResData("park found", 200, userDetailById)
+    return new ResData("user detail found", 200, userDetailById)
   }
 
   @GrpcMethod(USER_DETAIL_SERVICE, 'FindAll')
   async findAll() {
     const allAvailableUserDetailts = await this.userDetailService.findAll();
-    const repeated: { userDetailts: UserDetailEntity[] } = { userDetailts: allAvailableUserDetailts};
-    const resData = new ResData<{ userDetailts: Array<UserDetailEntity> }>("all available users details", 200, repeated);
+    const repeated: { userDetails: UserDetailEntity[] } = { userDetails: allAvailableUserDetailts};
+    const resData = new ResData<{ userDetails: Array<UserDetailEntity> }>("all available users details", 200, repeated);
     return resData
   }
 
@@ -39,6 +40,6 @@ export class UserDetailController {
   async delete(data: IUserDetailById) {
     const foundUserDetail = await this.userDetailService.findOne(data.id);
     const deleted = await this.userDetailService.remove(foundUserDetail);
-    return new ResData("user deleted successfully", 200, deleted);
+    return new ResData("user detail deleted successfully", 200, deleted);
   }
 }

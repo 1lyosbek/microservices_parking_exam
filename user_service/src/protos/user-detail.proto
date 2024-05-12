@@ -5,7 +5,7 @@ package userdetail;
 service UserDetailService {
   rpc Create (CreateUserDetail) returns (ResData) {}
   rpc FindAll (empty) returns (ResDataFindAll) {}
-  rpc FindById (UserDetailById) returns (ResData) {}
+  rpc FindOneById (UserDetailById) returns (ResData) {}
   rpc Update (UpdateUserDetailDto) returns (ResData) {}
   rpc Delete (UserDetailById) returns (ResData) {}
 }
@@ -60,6 +60,6 @@ message UserDetail {
   string lastName = 3;
   int32 avatar = 4;
   int32 userId = 5;
-  string createdAt = 8;
-  string lastEditedAt = 9;
+  string createdAt = 6;
+  string lastEditedAt = 7;
 }

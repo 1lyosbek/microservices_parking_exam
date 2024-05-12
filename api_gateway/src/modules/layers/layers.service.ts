@@ -20,28 +20,28 @@ export class LayersService {
   }
   async create(createLayerDto: CreateLayerDto) {
     await this.parkService.findOneById(createLayerDto.parkId);
-    const createdLayer = await this.layerService.create(createLayerDto);
+    const createdLayer = await this.layerService.create(createLayerDto).toPromise();
     return createdLayer;
   }
 
   async findAll() {
-    const foundLayers = await this.layerService.findAll() ;
+    const foundLayers = await this.layerService.findAll({}).toPromise();
     return foundLayers;
   }
 
   async findOne(id: number) {
-    const foundLayer = await this.layerService.findOneById({id});
+    const foundLayer = await this.layerService.findOneById({id}).toPromise();
     return foundLayer;
   }
 
   async update(id: number, updateLayerDto: UpdateLayerDto) {
     await this.parkService.findOneById(id);
-    const updatedLayer = await this.layerService.update({id, data: updateLayerDto});
+    const updatedLayer = await this.layerService.update({id, data: updateLayerDto}).toPromise();
     return updatedLayer;
   }
 
   async remove(id: number) {
-    const deletedLayer = await this.layerService.delete({id});
+    const deletedLayer = await this.layerService.delete({id}).toPromise();
     return deletedLayer;
   }
 }

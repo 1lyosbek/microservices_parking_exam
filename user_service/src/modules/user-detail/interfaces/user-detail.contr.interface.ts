@@ -6,7 +6,7 @@ export interface IUserDetailUpdataData {
     firstName:string;
     lastName:string;
     avatar: number;
-    user_id: number;
+    userId: number;
 }
 
 export interface IUserDetailUpdate {

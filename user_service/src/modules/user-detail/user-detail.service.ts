@@ -38,8 +38,10 @@ export class UserDetailService {
     foundUserDetail.firstName = updateUserDetailDto.firstName;
     foundUserDetail.lastName = updateUserDetailDto.lastName;
     foundUserDetail.avatar = updateUserDetailDto.avatar;
-    foundUserDetail.userId = updateUserDetailDto.user_id;
+    foundUserDetail.userId = updateUserDetailDto.userId;
     const updated = await this.userDetailRepository.updateUserDetail(foundUserDetail);
+    console.log(updated);
+    
     return updated;
   }
 

@@ -1,15 +1,15 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { FILE_PACKAGE } from 'src/common/consts/consts';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { FILE_PACKAGE, FILE_SERVICE } from 'src/common/consts/consts';
 import { ClientGrpc } from '@nestjs/microservices';
 
 @Injectable()
-export class FilesService {
+export class FilesService implements OnModuleInit {
   private fileService: any;
 
   constructor(@Inject(FILE_PACKAGE) private client: ClientGrpc) {}
 
   onModuleInit() {
-    this.fileService = this.client.getService<any>('FileService');
+    this.fileService = this.client.getService<any>(FILE_SERVICE);
   }
   async create(file: Express.Multer.File) {
     const createFileDto = {
@@ -23,7 +23,7 @@ export class FilesService {
   }
 
   async findAll() {
-    const foundFiles = await this.fileService.findAll().toPromise();
+    const foundFiles = await this.fileService.findAll({}).toPromise();
     return foundFiles;
   }
 

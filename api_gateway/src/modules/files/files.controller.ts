@@ -32,7 +32,7 @@ export class FilesController {
 
   @Get()
   findAll() {
-    return this.filesService.findAll();
+    return  this.filesService.findAll();
   }
 
   @Get(':id')

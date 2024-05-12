@@ -17,14 +17,14 @@ export class CreateServiceDto {
     userId: number;
 
     @ApiProperty({
-        type: Number
+        type: Date
     })
     @IsDate()
     @IsNotEmpty()
     startedAt: Date;
 
     @ApiProperty({
-        type: Number
+        type: Date
     })
     @IsDate()
     @IsNotEmpty()
